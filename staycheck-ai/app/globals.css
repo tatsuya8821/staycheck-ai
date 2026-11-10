@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  --font-body: "Noto Sans JP", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html,
+body {
+  background-color: #f6f8fb;
+  color: #1b2430;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #3d7bea;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 320ms ease-out both;
+}
+
+/*
+ * 削除ボタンなどの「ホバーで表示」演出について:
+ * マウス操作(hover可能)の環境だけ、通常時は薄く表示しホバーで濃くする。
+ * タッチ操作(hoverの概念がないスマホ・タブレット)では常に表示し、
+ * ボタンが見えず操作できなくなる事態を防ぐ。
+ */
+@media (hover: hover) and (pointer: fine) {
+  .hover-reveal {
+    opacity: 0;
+  }
+  .group:hover .hover-reveal {
+    opacity: 1;
+  }
+}
